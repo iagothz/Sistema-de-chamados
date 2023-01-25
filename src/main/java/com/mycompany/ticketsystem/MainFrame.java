@@ -33,8 +33,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         },0,1000);
     }
-
-    bancoConexao novo_chamado = new bancoConexao();
+    
+    UserInfo userinfo = new UserInfo();
+    ChamadosInfo chamadosinfo = new ChamadosInfo();
+    //ConexaoDB novo_chamado = new ConexaoDB();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -291,7 +293,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void MainFrame_Pane_Novo_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainFrame_Pane_Novo_ConfirmarActionPerformed
         // TODO add your handling code here:
-        int user_id = novo_chamado.user_id;
         int assunto = MainFrame_Pane_Novo_Assunto.getSelectedIndex();
         int prioridade = MainFrame_Pane_Novo_Prioridade.getSelectedIndex();
         String data = MainFrame_Pane_Novo_Data.getText();
@@ -301,9 +302,9 @@ public class MainFrame extends javax.swing.JFrame {
         if (assunto == 0 || prioridade == 0 || desc.equals("")) {
             JOptionPane.showMessageDialog(null, "Assunto, prioridade ou descrição não foram preenchidos corretamente" , "Criação de chamado", JOptionPane.WARNING_MESSAGE);
         } else{
-            novo_chamado.novo(assunto, prioridade, data, hora, desc);
-            if (novo_chamado.novoCadastrado == true){
-                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + novo_chamado.num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
+            
+            if (chamadosinfo.ci_novoChamadoOk == true){
+                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + chamadosinfo.ci_num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
                 MainFrame_Pane_Novo_Assunto.setSelectedIndex(0);
                 MainFrame_Pane_Novo_Prioridade.setSelectedIndex(0);
             }

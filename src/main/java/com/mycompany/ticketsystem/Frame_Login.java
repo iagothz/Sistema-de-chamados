@@ -7,14 +7,12 @@ import javax.swing.JOptionPane;
 public class Frame_Login extends javax.swing.JFrame {
     
     // Criador da estrutura Frame_Login
-    public int user_id = 0;
     public Frame_Login() {
         initComponents();
     }
-    
-    bancoConexao login = new bancoConexao();
+    UserInfo users = new UserInfo();
+    ConexaoDB conexao = new ConexaoDB();
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,23 +128,27 @@ public class Frame_Login extends javax.swing.JFrame {
 
     private void Form_Login_Pane_OkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Form_Login_Pane_OkActionPerformed
         // TODO add your handling code here:
-
+        boolean tryLogin = false;
+        int user_id = 0;
         String login_f = Form_Login_Pane_Login.getText();
         String pass_f = Form_Login_Pane_Password.getText();
         
         if (login_f.isEmpty() || pass_f.isEmpty()){
-            login.tryLogin = false;
+            tryLogin = false;
             JOptionPane.showMessageDialog(null, "Login ou senha inválidos", "Login falhou", JOptionPane.WARNING_MESSAGE);
+            System.out.println("Parou primeiro if " + tryLogin);
         } else {
-            login.login(login_f, pass_f,user_id);
-
-            if(login.tryLogin == true){
+            conexao.login(login_f, pass_f, user_id, tryLogin);
+            
+            if(users.getTryLogin() == true){
                 MainFrame MainFrame = new MainFrame();
                 MainFrame.setLocationRelativeTo(null);
                 MainFrame.setVisible(true);
                 this.hide();
-            } else if (login.tryLogin == false){
+            } else if (users.getTryLogin() == false){
                 JOptionPane.showMessageDialog(null, "Login ou senha inválidos", "Login falhou", JOptionPane.WARNING_MESSAGE);
+                System.out.println("Parou segundo else " + users.getTryLogin());
+                System.out.println("Parou segundo else " + users.getUser_pass());
             }
         }
     }//GEN-LAST:event_Form_Login_Pane_OkActionPerformed

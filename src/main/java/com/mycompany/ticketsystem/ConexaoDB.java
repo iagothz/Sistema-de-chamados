@@ -9,21 +9,23 @@ import java.sql.*;
 import java.sql.PreparedStatement;
 //@author Iago
 
-public class bancoConexao {
+public class ConexaoDB {
 
+    UserInfo users = new UserInfo();
+    
     private Connection con;
-    boolean tryLogin;
-    boolean novoCadastrado;
-    int num_chamado;
-    public int user_id = 1;
-    String login_f;
-    String pass_f;
-    int assunto;
-    int prioridade;
-    String data;
-    String hora;
-    String desc;
-
+    private int user_id;
+    private String user_login;
+    private String user_pass;
+    private boolean tryLogin;
+    private boolean novoChamadoOk;
+    private int num_chamado;
+    private int assunto;
+    private int prioridade;
+    private String data;
+    private String hora;
+    private String desc;
+    
     public void conn() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -35,7 +37,7 @@ public class bancoConexao {
         }
     }
 
-    public void login(String login_f, String pass_f, int user_id) {
+    public void login(String login_f, String pass_f, int user_id, boolean tryLogin) {
         try {
             conn();
             String sql = "SELECT * FROM users WHERE users_login = '" + login_f + "' && users_pass = '" + pass_f + "'"; // Cria query para verificar login
@@ -43,14 +45,16 @@ public class bancoConexao {
             ResultSet rs = stmt.executeQuery(sql); // Executa a query do login e guarda em rs1
             if (rs.next()) {
                 if (login_f.equals(rs.getString("users_login")) && pass_f.equals(rs.getString("users_pass"))) {
-                    tryLogin = true;
-                    user_id = rs.getInt("users_id");
-                    System.out.println(user_id);
-                } else {
-                    tryLogin = false;
+                    users.setTryLogin(true);
+                    users.setUser_id(rs.getInt("users_id"));
+                    System.out.println("Passou na verificacao de login " + pass_f);
+                } else if ((login_f.equals(rs.getString("users_login"))) != true ||  (pass_f.equals(rs.getString("users_pass"))) != true ){
+                    users.setTryLogin(false);
+                    System.out.println("Parou na verificacao de login elseif " + pass_f);
                 }
             } else {
-                tryLogin = false;
+                users.setTryLogin(false);
+                System.out.println("Parou na verificacao de login 2 else " + pass_f);
             }
             rs.close();
             con.close();
@@ -60,7 +64,7 @@ public class bancoConexao {
         }
     }
 
-    public void novo(int assunto, int prioridade, String data, String hora, String desc) {
+    public void novo(int assunto, int prioridade, String data, String hora, String desc, int user_id) {
         try {
             conn();
             String sql = "INSERT INTO chamados (chamados_categoria, chamados_prioridade, chamados_desc, chamados_data, chamados_hora, chamados_users_id) VALUES (" + assunto + ", " + prioridade + ", '" + desc + "', '" + data + "', '" + hora + "', " + user_id + ")"; // Cria query para inserir dados
@@ -68,14 +72,14 @@ public class bancoConexao {
             stmt.executeUpdate();
             ResultSet keys = stmt.getGeneratedKeys();
             if (keys.next()) {
-                int num_chamado = keys.getInt(1);
+                this.num_chamado = keys.getInt(1);
                 System.out.println("Chave gerada: " + num_chamado);
             }
-            System.out.println(user_id);
-            novoCadastrado = true;
+            //System.out.println(global_user_id);
+            novoChamadoOk = true;
             con.close();
         } catch (SQLException e) {
-            System.out.println(user_id);
+            //System.out.println(global_user_id);
             System.out.println("Erro catch novo");
             e.printStackTrace();
         }
