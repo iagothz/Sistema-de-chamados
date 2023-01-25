@@ -1,0 +1,5 @@
+CREATE DATABASE ticketSystem;
+USE ticketsystem;
+CREATE TABLE users(users_id INT(4) AUTO_INCREMENT PRIMARY KEY, users_name VARCHAR(32) NOT NULL, users_login VARCHAR(16) NOT NULL, users_pass VARCHAR(16) NOT NULL, users_admin BINARY(1) NOT NULL);
+CREATE TABLE chamados(chamados_id INT(4) AUTO_INCREMENT PRIMARY KEY, chamados_categoria INT(1) NOT NULL, chamados_prioridade INT(1) NOT NULL, chamados_desc VARCHAR(512) NOT NULL, chamados_data DATE NOT NULL, chamados_hora TIME NOT NULL, chamados_users_id INT(4) NOT NULL);
+ALTER TABLE chamados ADD FOREIGN KEY(chamados_users_id) REFERENCES users(users_id);
