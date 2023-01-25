@@ -4,7 +4,7 @@
  */
 package com.mycompany.ticketsystem;
 
-/**
+/*
  *
  * @author Iago
  */

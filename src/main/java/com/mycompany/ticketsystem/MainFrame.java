@@ -36,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     UserInfo userinfo = new UserInfo();
     ChamadosInfo chamadosinfo = new ChamadosInfo();
-    //ConexaoDB novo_chamado = new ConexaoDB();
+    ///ConexaoDB novo_chamado = new ConexaoDB();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
