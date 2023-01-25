@@ -301,7 +301,7 @@ public class MainFrame extends javax.swing.JFrame {
         if (assunto == 0 || prioridade == 0 || desc.equals("")) {
             JOptionPane.showMessageDialog(null, "Assunto, prioridade ou descrição não foram preenchidos corretamente" , "Criação de chamado", JOptionPane.WARNING_MESSAGE);
         } else{
-            novo_chamado.novo(assunto, prioridade, data, hora, desc, user_id);
+            novo_chamado.novo(assunto, prioridade, data, hora, desc);
             if (novo_chamado.novoCadastrado == true){
                 JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + novo_chamado.num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
                 MainFrame_Pane_Novo_Assunto.setSelectedIndex(0);
