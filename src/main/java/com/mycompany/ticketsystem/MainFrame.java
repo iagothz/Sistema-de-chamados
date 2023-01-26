@@ -38,6 +38,7 @@ public class MainFrame extends javax.swing.JFrame {
         },0,1000);
     }
     
+    ChamadosOpenTable chamadosmodel = new ChamadosOpenTable();
     UserInfo userinfo = new UserInfo();
     ChamadosInfo chamadosinfo = new ChamadosInfo();
     ConexaoDB conexao = new ConexaoDB();
@@ -208,17 +209,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainFrame_Pane.addTab("Novo chamado", MainFrame_Pane_Novo);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(chamadosmodel);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout MainFrame_Pane_ChamadoLayout = new javax.swing.GroupLayout(MainFrame_Pane_Chamado);
@@ -296,8 +287,7 @@ public class MainFrame extends javax.swing.JFrame {
         String hora = MainFrame_Pane_Novo_Hora.getText();
         String desc = MainFrame_Pane_Novo_Pane_Descricao.getText();
         int user_id = userinfo.getUser_id();
-        System.out.println(userinfo.getUser_id());
-        int num_chamado = chamadosinfo.getCi_num_chamado();
+        int num_chamado = chamadosinfo.getNum_chamado();
         boolean novoChamadoOk = false;
         
         if (assunto == 0 || prioridade == 0 || desc.equals("")) {
@@ -307,7 +297,7 @@ public class MainFrame extends javax.swing.JFrame {
             try {
                 conexao.conn();
                 
-                String sql = "INSERT INTO chamados (chamados_categoria, chamados_prioridade, chamados_desc, chamados_data, chamados_hora, chamados_users_id) VALUES (" + assunto + ", " + prioridade + ", '" + desc + "', '" + data + "', '" + hora + "', " + user_id + ")"; // Cria query para inserir dados
+                String sql = "INSERT INTO chamados (chamados_categoria, chamados_prioridade, chamados_desc, chamados_data, chamados_hora, chamados_users_id, chamados_encerrado) VALUES (" + assunto + ", " + prioridade + ", '" + desc + "', '" + data + "', '" + hora + "', " + user_id + ", 0)"; // Cria query para inserir dados
                 PreparedStatement stmt = conexao.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // Cria Statement para executar as querys
                 stmt.executeUpdate();
                 ResultSet keys = stmt.getGeneratedKeys();
