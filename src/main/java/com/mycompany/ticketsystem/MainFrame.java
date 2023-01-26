@@ -7,6 +7,10 @@ import java.text.*;
 import javax.swing.JTextField;
 import com.mycompany.ticketsystem.Class_Hora;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -36,6 +40,7 @@ public class MainFrame extends javax.swing.JFrame {
     
     UserInfo userinfo = new UserInfo();
     ChamadosInfo chamadosinfo = new ChamadosInfo();
+    ConexaoDB conexao = new ConexaoDB();
     ///ConexaoDB novo_chamado = new ConexaoDB();
     
     @SuppressWarnings("unchecked")
@@ -298,13 +303,33 @@ public class MainFrame extends javax.swing.JFrame {
         String data = MainFrame_Pane_Novo_Data.getText();
         String hora = MainFrame_Pane_Novo_Hora.getText();
         String desc = MainFrame_Pane_Novo_Pane_Descricao.getText();
+        int user_id = userinfo.getUser_id();
+        System.out.println(userinfo.getUser_id());
+        int num_chamado = chamadosinfo.getCi_num_chamado();
+        boolean novoChamadoOk = false;
         
         if (assunto == 0 || prioridade == 0 || desc.equals("")) {
+            novoChamadoOk = false;
             JOptionPane.showMessageDialog(null, "Assunto, prioridade ou descrição não foram preenchidos corretamente" , "Criação de chamado", JOptionPane.WARNING_MESSAGE);
         } else{
-            
-            if (chamadosinfo.ci_novoChamadoOk == true){
-                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + chamadosinfo.ci_num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
+            try {
+                conexao.conn();
+                
+                String sql = "INSERT INTO chamados (chamados_categoria, chamados_prioridade, chamados_desc, chamados_data, chamados_hora, chamados_users_id) VALUES (" + assunto + ", " + prioridade + ", '" + desc + "', '" + data + "', '" + hora + "', " + user_id + ")"; // Cria query para inserir dados
+                PreparedStatement stmt = conexao.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // Cria Statement para executar as querys
+                stmt.executeUpdate();
+                ResultSet keys = stmt.getGeneratedKeys();
+                if (keys.next()) {
+                    num_chamado = keys.getInt(1);
+                    System.out.println("Chave gerada: " + num_chamado);
+                    
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro catch novo");
+                e.printStackTrace();
+            }
+            if (novoChamadoOk == true){
+                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
                 MainFrame_Pane_Novo_Assunto.setSelectedIndex(0);
                 MainFrame_Pane_Novo_Prioridade.setSelectedIndex(0);
             }

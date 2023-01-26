@@ -26,7 +26,6 @@ public class UserInfo {
     }
     public void setTryLogin(boolean tryLogin) {
         this.tryLogin = tryLogin;
-        System.out.println(tryLogin);
     }
     public int getUser_id() {
         return user_id;
