@@ -83,7 +83,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainFrame_Pane_Novo_lbl_Prioridade.setText("Nivel de carencia:");
 
-        MainFrame_Pane_Novo_Prioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma prioridade", "1. Dá pra sobreviver até", "2. Até rola usar assim, mas tem que arrumar", "3. Precisa resolver pra agora esse troço", "4. Não dá pra viver, arruma isso aqui plmds" }));
+        MainFrame_Pane_Novo_Prioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma prioridade", "1. Até rola usar assim, mas tem que arrumar", "2. Precisa resolver pra agora esse troço", "3. Não dá pra viver, arruma isso aqui plmds", "4. TÁ PEGANDO FOGO, BICHO" }));
 
         MainFrame_Pane_Novo_Confirmar.setText("Abrir pedido de socorro (F2)");
         MainFrame_Pane_Novo_Confirmar.addActionListener(new java.awt.event.ActionListener() {

@@ -78,13 +78,13 @@ public class ChamadosOpenTable extends AbstractTableModel {
             int prioridadeNum = (int) data[rowIndex][columnIndex];
             switch(prioridadeNum){
                 case 1:
-                    return "Dá pra sobreviver até";
-                case 2:
                     return "Até rola usar assim, mas tem que arrumar";
-                case 3:
+                case 2:
                     return "Precisa resolver pra agora esse troço";
-                case 4:
+                case 3:
                     return "Não dá pra viver, arruma isso aqui plmds";
+                case 4:
+                    return "TÁ PEGANDO FOGO, BICHO";
                 default:
                     return "Inválido";
             }
