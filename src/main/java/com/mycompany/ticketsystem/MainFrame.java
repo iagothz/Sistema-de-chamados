@@ -7,6 +7,10 @@ import java.text.*;
 import javax.swing.JTextField;
 import com.mycompany.ticketsystem.Class_Hora;
 import java.awt.event.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class MainFrame extends javax.swing.JFrame {
@@ -33,8 +37,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         },0,1000);
     }
-
-    bancoConexao novo_chamado = new bancoConexao();
+    
+    UserInfo userinfo = new UserInfo();
+    ChamadosInfo chamadosinfo = new ChamadosInfo();
+    ConexaoDB conexao = new ConexaoDB();
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -57,8 +63,8 @@ public class MainFrame extends javax.swing.JFrame {
         MainFrame_Pane_Novo_Pane_Descricao = new javax.swing.JTextArea();
         MainFrame_Pane_Novo_lbl_Descricao = new javax.swing.JLabel();
         MainFrame_Pane_Chamado = new javax.swing.JPanel();
-        MainFrame_Pane_Chamado_Panel = new javax.swing.JScrollPane();
-        MainFrame_Pane_Chamado_Panel_Table = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         MainFrame_Pane_Encerrado = new javax.swing.JPanel();
         MainFrame_Pane_Encerrado_Panel = new javax.swing.JScrollPane();
         MainFrame_Pane_Encerrado_Panel_Table = new javax.swing.JTable();
@@ -70,15 +76,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainFrame_Pane_Novo_Dados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        MainFrame_Pane_Novo_lbl_Assunto.setText("Assunto:");
+        MainFrame_Pane_Novo_lbl_Assunto.setText("Onde deu a treta:");
 
         MainFrame_Pane_Novo_lbl_Data.setText("Data:");
 
-        MainFrame_Pane_Novo_lbl_Prioridade.setText("Prioridade:");
+        MainFrame_Pane_Novo_lbl_Prioridade.setText("Nivel de carencia:");
 
         MainFrame_Pane_Novo_Prioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma prioridade", "1. Dá pra sobreviver até", "2. Até rola usar assim, mas tem que arrumar", "3. Precisa resolver pra agora esse troço", "4. Não dá pra viver, arruma isso aqui plmds" }));
 
-        MainFrame_Pane_Novo_Confirmar.setText("Abrir ticket (F2)");
+        MainFrame_Pane_Novo_Confirmar.setText("Abrir pedido de socorro (F2)");
         MainFrame_Pane_Novo_Confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MainFrame_Pane_Novo_ConfirmarActionPerformed(evt);
@@ -114,16 +120,13 @@ public class MainFrame extends javax.swing.JFrame {
             MainFrame_Pane_Novo_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainFrame_Pane_Novo_DadosLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(MainFrame_Pane_Novo_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(MainFrame_Pane_Novo_lbl_Prioridade)
+                    .addComponent(MainFrame_Pane_Novo_lbl_Assunto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MainFrame_Pane_Novo_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MainFrame_Pane_Novo_DadosLayout.createSequentialGroup()
-                        .addComponent(MainFrame_Pane_Novo_lbl_Prioridade)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MainFrame_Pane_Novo_Prioridade, 0, 417, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainFrame_Pane_Novo_DadosLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(MainFrame_Pane_Novo_lbl_Assunto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(MainFrame_Pane_Novo_Assunto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(MainFrame_Pane_Novo_Assunto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MainFrame_Pane_Novo_Prioridade, 0, 381, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(MainFrame_Pane_Novo_DadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(MainFrame_Pane_Novo_DadosLayout.createSequentialGroup()
@@ -162,7 +165,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainFrame_Pane_Novo_Pane_Descricao.setRows(5);
         MainFrame_Pane_Novo_Pane_Scroll.setViewportView(MainFrame_Pane_Novo_Pane_Descricao);
 
-        MainFrame_Pane_Novo_lbl_Descricao.setText("Descrição do problema:");
+        MainFrame_Pane_Novo_lbl_Descricao.setText("Descreva seu problema (Não vale problemas psicológicos):");
 
         javax.swing.GroupLayout MainFrame_Pane_Novo_DescricaoLayout = new javax.swing.GroupLayout(MainFrame_Pane_Novo_Descricao);
         MainFrame_Pane_Novo_Descricao.setLayout(MainFrame_Pane_Novo_DescricaoLayout);
@@ -205,9 +208,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainFrame_Pane.addTab("Novo chamado", MainFrame_Pane_Novo);
 
-        MainFrame_Pane_Chamado_Panel.setForeground(new java.awt.Color(255, 255, 255));
-
-        MainFrame_Pane_Chamado_Panel_Table.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -218,21 +219,19 @@ public class MainFrame extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        MainFrame_Pane_Chamado_Panel.setViewportView(MainFrame_Pane_Chamado_Panel_Table);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout MainFrame_Pane_ChamadoLayout = new javax.swing.GroupLayout(MainFrame_Pane_Chamado);
         MainFrame_Pane_Chamado.setLayout(MainFrame_Pane_ChamadoLayout);
         MainFrame_Pane_ChamadoLayout.setHorizontalGroup(
             MainFrame_Pane_ChamadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainFrame_Pane_ChamadoLayout.createSequentialGroup()
-                .addComponent(MainFrame_Pane_Chamado_Panel, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
         );
         MainFrame_Pane_ChamadoLayout.setVerticalGroup(
             MainFrame_Pane_ChamadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainFrame_Pane_ChamadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MainFrame_Pane_Chamado_Panel, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
         );
 
         MainFrame_Pane.addTab("Chamados abertos", MainFrame_Pane_Chamado);
@@ -291,21 +290,41 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void MainFrame_Pane_Novo_ConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainFrame_Pane_Novo_ConfirmarActionPerformed
         // TODO add your handling code here:
-        int user_id = novo_chamado.user_id;
         int assunto = MainFrame_Pane_Novo_Assunto.getSelectedIndex();
         int prioridade = MainFrame_Pane_Novo_Prioridade.getSelectedIndex();
         String data = MainFrame_Pane_Novo_Data.getText();
         String hora = MainFrame_Pane_Novo_Hora.getText();
         String desc = MainFrame_Pane_Novo_Pane_Descricao.getText();
+        int user_id = userinfo.getUser_id();
+        System.out.println(userinfo.getUser_id());
+        int num_chamado = chamadosinfo.getCi_num_chamado();
+        boolean novoChamadoOk = false;
         
         if (assunto == 0 || prioridade == 0 || desc.equals("")) {
+            novoChamadoOk = false;
             JOptionPane.showMessageDialog(null, "Assunto, prioridade ou descrição não foram preenchidos corretamente" , "Criação de chamado", JOptionPane.WARNING_MESSAGE);
         } else{
-            novo_chamado.novo(assunto, prioridade, data, hora, desc, user_id);
-            if (novo_chamado.novoCadastrado == true){
-                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + novo_chamado.num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
+            try {
+                conexao.conn();
+                
+                String sql = "INSERT INTO chamados (chamados_categoria, chamados_prioridade, chamados_desc, chamados_data, chamados_hora, chamados_users_id) VALUES (" + assunto + ", " + prioridade + ", '" + desc + "', '" + data + "', '" + hora + "', " + user_id + ")"; // Cria query para inserir dados
+                PreparedStatement stmt = conexao.con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // Cria Statement para executar as querys
+                stmt.executeUpdate();
+                ResultSet keys = stmt.getGeneratedKeys();
+                if (keys.next()) {
+                    num_chamado = keys.getInt(1);
+                    System.out.println("Chave gerada: " + num_chamado);
+                    novoChamadoOk = true;
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro catch novo");
+                e.printStackTrace();
+            }
+            if (novoChamadoOk == true){
+                JOptionPane.showMessageDialog(null, "Chamado criado com sucesso. Numero do chamado: " + num_chamado, "Chamado criado", JOptionPane.WARNING_MESSAGE);
                 MainFrame_Pane_Novo_Assunto.setSelectedIndex(0);
                 MainFrame_Pane_Novo_Prioridade.setSelectedIndex(0);
+                MainFrame_Pane_Novo_Pane_Descricao.setText("");
             }
         }
     }//GEN-LAST:event_MainFrame_Pane_Novo_ConfirmarActionPerformed
@@ -322,6 +341,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void MainFrame_Pane_Novo_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainFrame_Pane_Novo_DataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MainFrame_Pane_Novo_DataActionPerformed
+    
+    
     
     /**
      * @param args the command line arguments
@@ -361,8 +382,6 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane MainFrame_Pane;
     private javax.swing.JPanel MainFrame_Pane_Chamado;
-    private javax.swing.JScrollPane MainFrame_Pane_Chamado_Panel;
-    private javax.swing.JTable MainFrame_Pane_Chamado_Panel_Table;
     private javax.swing.JPanel MainFrame_Pane_Encerrado;
     private javax.swing.JScrollPane MainFrame_Pane_Encerrado_Panel;
     private javax.swing.JTable MainFrame_Pane_Encerrado_Panel_Table;
@@ -381,5 +400,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel MainFrame_Pane_Novo_lbl_Descricao;
     private javax.swing.JLabel MainFrame_Pane_Novo_lbl_Hora;
     private javax.swing.JLabel MainFrame_Pane_Novo_lbl_Prioridade;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

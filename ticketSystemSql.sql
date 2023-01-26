@@ -34,9 +34,15 @@ CREATE TABLE IF NOT EXISTS `chamados` (
   PRIMARY KEY (`chamados_id`),
   KEY `chamados_users_fk1` (`chamados_users_id`),
   CONSTRAINT `chamados_users_fk1` FOREIGN KEY (`chamados_users_id`) REFERENCES `users` (`users_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela ticketsystem.chamados: ~0 rows (aproximadamente)
+-- Copiando dados para a tabela ticketsystem.chamados: ~5 rows (aproximadamente)
+REPLACE INTO `chamados` (`chamados_id`, `chamados_categoria`, `chamados_prioridade`, `chamados_desc`, `chamados_data`, `chamados_hora`, `chamados_users_id`, `chamados_mensagens`) VALUES
+	(1, 1, 1, 'asd', '25/01/2023', '15:25:50', 1, NULL),
+	(26, 2, 1, 'asd', '26/01/2023', '14:10:10', 1, NULL),
+	(27, 1, 1, 'asd sad', '26/01/2023', '14:10:21', 1, NULL),
+	(28, 1, 1, 'asd sad', '26/01/2023', '14:13:24', 1, NULL),
+	(29, 1, 1, 'asdv', '26/01/2023', '14:14:05', 1, NULL);
 
 -- Copiando estrutura para tabela ticketsystem.users
 DROP TABLE IF EXISTS `users`;
@@ -49,9 +55,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`users_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Copiando dados para a tabela ticketsystem.users: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela ticketsystem.users: ~0 rows (aproximadamente)
 REPLACE INTO `users` (`users_id`, `users_name`, `users_login`, `users_pass`, `users_admin`) VALUES
-	(1, 'Iago Rogerio de Souza Formes', 'iago.formes', 'admin', _binary 0x31);
+	(1, 'admin', 'admin', 'admin', _binary 0x31);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

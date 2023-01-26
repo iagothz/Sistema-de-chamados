@@ -1,0 +1,55 @@
+@options
+@packages
+@argfile
+-classpath
+'C:/Users/Iago/.m2/repository/com/mysql/mysql-connector-j/8.0.31/mysql-connector-j-8.0.31.jar;C:/Users/Iago/.m2/repository/com/google/protobuf/protobuf-java/3.19.4/protobuf-java-3.19.4.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'17'
+-sourcepath
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'ticketSystem 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'ticketSystem 1.0-SNAPSHOT API'
+com.mycompany.ticketsystem
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/ChamadosInfo.java'
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/ConexaoDB.java'
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/FrameView.java'
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/Frame_Login.java'
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/HoraData.java'
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/MainFrame.java'
+'C:/Users/Iago/Documents/NetBeansProjects/ticketSystem/src/main/java/com/mycompany/ticketsystem/UserInfo.java'
+C:\Users\Iago\.m2\repository\com\mysql\mysql-connector-j\8.0.31\mysql-connector-j-8.0.31.jar = 1674656877086
+C:\Users\Iago\.m2\repository\com\google\protobuf\protobuf-java\3.19.4\protobuf-java-3.19.4.jar = 1674656877646
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\src\main\java = 1674578501146
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\allclasses-index.html = 1674756588621
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\allpackages-index.html = 1674756588625
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\element-list = 1674756588455
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\help-doc.html = 1674756588678
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\index-all.html = 1674756588668
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\index.html = 1674756588671
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\jquery-ui.overrides.css = 1674756588755
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\member-search-index.js = 1674756588636
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\module-search-index.js = 1674756588627
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\overview-tree.html = 1674756588600
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\package-search-index.js = 1674756588631
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\script.js = 1674756588690
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\search.js = 1674756588695
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\serialized-form.html = 1674756588543
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\stylesheet.css = 1674756588683
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\tag-search-index.js = 1674756588639
+C:\Users\Iago\Documents\NetBeansProjects\ticketSystem\target\apidocs\type-search-index.js = 1674756588634
