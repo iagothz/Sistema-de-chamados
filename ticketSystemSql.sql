@@ -31,18 +31,19 @@ CREATE TABLE IF NOT EXISTS `chamados` (
   `chamados_hora` varchar(50) NOT NULL DEFAULT '',
   `chamados_users_id` int(4) unsigned NOT NULL,
   `chamados_mensagens` longtext DEFAULT NULL,
+  `chamados_encerrado` binary(1) DEFAULT '0',
   PRIMARY KEY (`chamados_id`),
   KEY `chamados_users_fk1` (`chamados_users_id`),
   CONSTRAINT `chamados_users_fk1` FOREIGN KEY (`chamados_users_id`) REFERENCES `users` (`users_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Copiando dados para a tabela ticketsystem.chamados: ~5 rows (aproximadamente)
-REPLACE INTO `chamados` (`chamados_id`, `chamados_categoria`, `chamados_prioridade`, `chamados_desc`, `chamados_data`, `chamados_hora`, `chamados_users_id`, `chamados_mensagens`) VALUES
-	(1, 1, 1, 'asd', '25/01/2023', '15:25:50', 1, NULL),
-	(26, 2, 1, 'asd', '26/01/2023', '14:10:10', 1, NULL),
-	(27, 1, 1, 'asd sad', '26/01/2023', '14:10:21', 1, NULL),
-	(28, 1, 1, 'asd sad', '26/01/2023', '14:13:24', 1, NULL),
-	(29, 1, 1, 'asdv', '26/01/2023', '14:14:05', 1, NULL);
+REPLACE INTO `chamados` (`chamados_id`, `chamados_categoria`, `chamados_prioridade`, `chamados_desc`, `chamados_data`, `chamados_hora`, `chamados_users_id`, `chamados_mensagens`, `chamados_encerrado`) VALUES
+	(1, 1, 1, 'teste ok deu', '25/01/2023', '15:25:50', 1, NULL, _binary 0x30),
+	(26, 2, 2, 'teste ok deu', '26/01/2023', '14:10:10', 1, NULL, _binary 0x30),
+	(27, 3, 3, 'testou', '26/01/2023', '14:10:21', 1, NULL, _binary 0x30),
+	(28, 4, 4, 'FOI', '26/01/2023', '14:13:24', 1, NULL, _binary 0x30),
+	(29, 5, 2, 'Agr sim', '26/01/2023', '14:14:05', 1, NULL, _binary 0x30);
 
 -- Copiando estrutura para tabela ticketsystem.users
 DROP TABLE IF EXISTS `users`;
