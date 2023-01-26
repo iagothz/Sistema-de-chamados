@@ -10,34 +10,34 @@ package com.mycompany.ticketsystem;
  */
 public class ChamadosInfo {
     
-    private int ci_assunto;
-    private int ci_prioridade;
-    private String ci_data;
-    private String ci_hora;
-    private String ci_desc;
-    private int ci_num_chamado;
-    private boolean ci_novoChamadoOk;
+    private static int ci_assunto;
+    private static int ci_prioridade;
+    private static String ci_data;
+    private static String ci_hora;
+    private static String ci_desc;
+    private static int ci_num_chamado;
+    private static boolean ci_novoChamadoOk;
 
     public void setCi_assunto(int ci_assunto) {
-        this.ci_assunto = ci_assunto;
+        ChamadosInfo.ci_assunto = ci_assunto;
     }
     public void setCi_prioridade(int ci_prioridade) {
-        this.ci_prioridade = ci_prioridade;
+        ChamadosInfo.ci_prioridade = ci_prioridade;
     }
     public void setCi_data(String ci_data) {
-        this.ci_data = ci_data;
+        ChamadosInfo.ci_data = ci_data;
     }
     public void setCi_hora(String ci_hora) {
-        this.ci_hora = ci_hora;
+        ChamadosInfo.ci_hora = ci_hora;
     }
     public void setCi_desc(String ci_desc) {
-        this.ci_desc = ci_desc;
+        ChamadosInfo.ci_desc = ci_desc;
     }
     public void setCi_num_chamado(int ci_num_chamado) {
-        this.ci_num_chamado = ci_num_chamado;
+        ChamadosInfo.ci_num_chamado = ci_num_chamado;
     }
     public void setCi_novoChamadoOk(boolean ci_novoChamadoOk) {
-        this.ci_novoChamadoOk = ci_novoChamadoOk;
+        ChamadosInfo.ci_novoChamadoOk = ci_novoChamadoOk;
     }
     public int getCi_assunto() {
         return ci_assunto;

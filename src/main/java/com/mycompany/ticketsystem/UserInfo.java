@@ -10,22 +10,22 @@ package com.mycompany.ticketsystem;
  */
 public class UserInfo {
     
-    private int user_id;
-    private String user_login;
-    private String user_pass;
-    private boolean tryLogin;
+    private static int user_id;
+    private static String user_login;
+    private static String user_pass;
+    private static boolean tryLogin;
 
     public void setUser_id(int user_id) {
-        this.user_id = user_id;
+        UserInfo.user_id = user_id;
     }
     public void setUser_login(String user_login) {
-        this.user_login = user_login;
+        UserInfo.user_login = user_login;
     }
     public void setUser_pass(String user_pass) {
-        this.user_pass = user_pass;
+        UserInfo.user_pass = user_pass;
     }
     public void setTryLogin(boolean tryLogin) {
-        this.tryLogin = tryLogin;
+        UserInfo.tryLogin = tryLogin;
     }
     public int getUser_id() {
         return user_id;

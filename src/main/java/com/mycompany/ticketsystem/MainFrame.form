@@ -92,18 +92,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="MainFrame_Pane_Novo_lbl_Prioridade" min="-2" max="-2" attributes="0"/>
+                              <Component id="MainFrame_Pane_Novo_lbl_Assunto" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="MainFrame_Pane_Novo_lbl_Prioridade" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="MainFrame_Pane_Novo_Prioridade" pref="417" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                  <Component id="MainFrame_Pane_Novo_lbl_Assunto" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="MainFrame_Pane_Novo_Assunto" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="MainFrame_Pane_Novo_Assunto" max="32767" attributes="0"/>
+                              <Component id="MainFrame_Pane_Novo_Prioridade" pref="381" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -148,7 +144,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="MainFrame_Pane_Novo_lbl_Assunto">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Assunto:"/>
+                    <Property name="text" type="java.lang.String" value="Onde deu a treta:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="MainFrame_Pane_Novo_lbl_Data">
@@ -158,7 +154,7 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="MainFrame_Pane_Novo_lbl_Prioridade">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Prioridade:"/>
+                    <Property name="text" type="java.lang.String" value="Nivel de carencia:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="MainFrame_Pane_Novo_Prioridade">
@@ -179,7 +175,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="MainFrame_Pane_Novo_Confirmar">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Abrir ticket (F2)"/>
+                    <Property name="text" type="java.lang.String" value="Abrir pedido de socorro (F2)"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MainFrame_Pane_Novo_ConfirmarActionPerformed"/>
@@ -283,7 +279,7 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="MainFrame_Pane_Novo_lbl_Descricao">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o do problema:"/>
+                    <Property name="text" type="java.lang.String" value="Descreva seu problema (N&#xe3;o vale problemas psicol&#xf3;gicos):"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -302,32 +298,27 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="MainFrame_Pane_Chamado_Panel" min="-2" pref="788" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" alignment="0" pref="788" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="MainFrame_Pane_Chamado_Panel" pref="551" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="551" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="MainFrame_Pane_Chamado_Panel">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <AuxValues>
+                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+              </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="MainFrame_Pane_Chamado_Panel_Table">
+                <Component class="javax.swing.JTable" name="jTable1">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="4">
