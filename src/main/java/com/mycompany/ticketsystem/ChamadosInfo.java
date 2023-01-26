@@ -10,54 +10,54 @@ package com.mycompany.ticketsystem;
  */
 public class ChamadosInfo {
     
-    private static int ci_assunto;
-    private static int ci_prioridade;
-    private static String ci_data;
-    private static String ci_hora;
-    private static String ci_desc;
-    private static int ci_num_chamado;
-    private static boolean ci_novoChamadoOk;
+    private static int assunto;
+    private static int prioridade;
+    private static String data;
+    private static String hora;
+    private static String desc;
+    private static int num_chamado;
+    private static boolean novoChamadoOk;
 
-    public void setCi_assunto(int ci_assunto) {
-        ChamadosInfo.ci_assunto = ci_assunto;
+    public void setAssunto(int assunto) {
+        ChamadosInfo.assunto = assunto;
     }
-    public void setCi_prioridade(int ci_prioridade) {
-        ChamadosInfo.ci_prioridade = ci_prioridade;
+    public void setPrioridade(int prioridade) {
+        ChamadosInfo.prioridade = prioridade;
     }
-    public void setCi_data(String ci_data) {
-        ChamadosInfo.ci_data = ci_data;
+    public void setData(String data) {
+        ChamadosInfo.data = data;
     }
-    public void setCi_hora(String ci_hora) {
-        ChamadosInfo.ci_hora = ci_hora;
+    public void setHora(String hora) {
+        ChamadosInfo.hora = hora;
     }
-    public void setCi_desc(String ci_desc) {
-        ChamadosInfo.ci_desc = ci_desc;
+    public void setDesc(String desc) {
+        ChamadosInfo.desc = desc;
     }
-    public void setCi_num_chamado(int ci_num_chamado) {
-        ChamadosInfo.ci_num_chamado = ci_num_chamado;
+    public void setNum_chamado(int num_chamado) {
+        ChamadosInfo.num_chamado = num_chamado;
     }
-    public void setCi_novoChamadoOk(boolean ci_novoChamadoOk) {
-        ChamadosInfo.ci_novoChamadoOk = ci_novoChamadoOk;
+    public void setNovoChamadoOk(boolean novoChamadoOk) {
+        ChamadosInfo.novoChamadoOk = novoChamadoOk;
     }
-    public int getCi_assunto() {
-        return ci_assunto;
+    public int getAssunto() {
+        return assunto;
     }
-    public int getCi_prioridade() {
-        return ci_prioridade;
+    public int getPrioridade() {
+        return prioridade;
     }
-    public String getCi_data() {
-        return ci_data;
+    public String getData() {
+        return data;
     }
-    public String getCi_hora() {
-        return ci_hora;
+    public String getHora() {
+        return hora;
     }
-    public String getCi_desc() {
-        return ci_desc;
+    public String getDesc() {
+        return desc;
     }
-    public int getCi_num_chamado() {
-        return ci_num_chamado;
+    public int getNum_chamado() {
+        return num_chamado;
     }
-    public boolean getCi_novoChamadoOk() {
-        return ci_novoChamadoOk;
+    public boolean getNovoChamadoOk() {
+        return novoChamadoOk;
     }
 }
