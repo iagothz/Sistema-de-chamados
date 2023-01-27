@@ -1,4 +1,4 @@
-package com.mycompany.ticketsystem;
+package Classes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

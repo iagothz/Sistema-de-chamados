@@ -1,14 +1,14 @@
-package com.mycompany.ticketsystem;
-//A
+package Classes;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JTextField;
 
-class Class_Hora implements Runnable{
+public class HoraData implements Runnable{
     JTextField MainFrame_Pane_Novo_Hora;
 
     
-    public Class_Hora(JTextField MainFrame_Pane_Novo_Hora){
+    public HoraData(JTextField MainFrame_Pane_Novo_Hora){
         this.MainFrame_Pane_Novo_Hora = MainFrame_Pane_Novo_Hora;
 
     }

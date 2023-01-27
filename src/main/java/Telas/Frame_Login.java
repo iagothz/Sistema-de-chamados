@@ -1,17 +1,21 @@
-package com.mycompany.ticketsystem;
+package Telas;
 
+import Classes.ConexaoDB;
+import Classes.UserInfo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 // author Iago
-
 public class Frame_Login extends javax.swing.JFrame {
-    
+
+    MainFrame MainFrame;
+
     // Criador da estrutura Frame_Login
     public Frame_Login() {
         initComponents();
+
     }
     UserInfo users = new UserInfo();
     ConexaoDB conexao = new ConexaoDB();
@@ -130,12 +134,12 @@ public class Frame_Login extends javax.swing.JFrame {
         int user_id = 0;
         String login_f = Form_Login_Pane_Login.getText();
         String pass_f = Form_Login_Pane_Password.getText();
-        
-        if (login_f.isEmpty() || pass_f.isEmpty()){
+
+        if (login_f.isEmpty() || pass_f.isEmpty()) {
             tryLogin = false;
             JOptionPane.showMessageDialog(null, "Login ou senha inválidos", "Login falhou", JOptionPane.WARNING_MESSAGE);
         } else {
-            try{
+            try {
                 conexao.conn();
                 String sql = "SELECT * FROM users WHERE users_login = '" + login_f + "' && users_pass = '" + pass_f + "'"; // Cria query para verificar login
                 Statement stmt = conexao.con.createStatement(); // Cria o Statement da conexão do banco
@@ -151,15 +155,15 @@ public class Frame_Login extends javax.swing.JFrame {
                     users.setTryLogin(false);
                 }
                 rs.close();
-            } catch (SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
-            if(users.getTryLogin() == true){
+            if (users.getTryLogin() == true) {
                 MainFrame MainFrame = new MainFrame();
                 MainFrame.setLocationRelativeTo(null);
                 MainFrame.setVisible(true);
                 this.hide();
-            } else if (users.getTryLogin() == false){
+            } else if (users.getTryLogin() == false) {
                 JOptionPane.showMessageDialog(null, "Login ou senha inválidos", "Login falhou", JOptionPane.WARNING_MESSAGE);
             }
         }

@@ -1,29 +1,37 @@
-package com.mycompany.ticketsystem;
+package Telas;
 
+import Classes.ConexaoDB;
+import Classes.ChamadosOpenTable;
+import Classes.UserInfo;
+import Classes.ChamadosInfo;
+import Classes.HoraData;
 import java.lang.*;
 import java.util.Timer;
 import java.util.*;
 import java.text.*;
 import javax.swing.JTextField;
-import com.mycompany.ticketsystem.Class_Hora;
 import java.awt.event.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 public class MainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form MainFrame
      */
+    
+    
     public MainFrame() {
         initComponents();
-        Thread thr = new Thread(new Class_Hora(MainFrame_Pane_Novo_Hora));
+        
+        Thread thr = new Thread(new HoraData(MainFrame_Pane_Novo_Hora));
         thr.start();
 
-        Class_Hora hora = new Class_Hora(MainFrame_Pane_Novo_Hora);
+        HoraData hora = new HoraData(MainFrame_Pane_Novo_Hora);
         
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask(){
@@ -47,6 +55,8 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         MainFrame_Pane = new javax.swing.JTabbedPane();
         MainFrame_Pane_Novo = new javax.swing.JPanel();
         MainFrame_Pane_Novo_Dados = new javax.swing.JPanel();
@@ -70,6 +80,18 @@ public class MainFrame extends javax.swing.JFrame {
         MainFrame_Pane_Encerrado_Panel = new javax.swing.JScrollPane();
         MainFrame_Pane_Encerrado_Panel_Table = new javax.swing.JTable();
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setRequestFocusEnabled(false);
+        jMenuItem1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jMenuItem1KeyPressed(evt);
+            }
+        });
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem2.setText("jMenuItem2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chamados");
         setResizable(false);
@@ -83,12 +105,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         MainFrame_Pane_Novo_lbl_Prioridade.setText("Nivel de carencia:");
 
-        MainFrame_Pane_Novo_Prioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma prioridade", "1. Dá pra sobreviver até", "2. Até rola usar assim, mas tem que arrumar", "3. Precisa resolver pra agora esse troço", "4. Não dá pra viver, arruma isso aqui plmds" }));
+        MainFrame_Pane_Novo_Prioridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma prioridade", "1. Até rola usar assim, mas tem que arrumar", "2. Precisa resolver pra agora esse troço", "3. Não dá pra viver, arruma isso aqui plmds", "4. TÁ PEGANDO FOGO, BICHO" }));
 
         MainFrame_Pane_Novo_Confirmar.setText("Abrir pedido de socorro (F2)");
         MainFrame_Pane_Novo_Confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MainFrame_Pane_Novo_ConfirmarActionPerformed(evt);
+            }
+        });
+        MainFrame_Pane_Novo_Confirmar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                MainFrame_Pane_Novo_ConfirmarKeyPressed(evt);
             }
         });
 
@@ -172,7 +199,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainFrame_Pane_Novo_Descricao.setLayout(MainFrame_Pane_Novo_DescricaoLayout);
         MainFrame_Pane_Novo_DescricaoLayout.setHorizontalGroup(
             MainFrame_Pane_Novo_DescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MainFrame_Pane_Novo_DescricaoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MainFrame_Pane_Novo_DescricaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(MainFrame_Pane_Novo_DescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(MainFrame_Pane_Novo_Pane_Scroll)
@@ -184,7 +211,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainFrame_Pane_Novo_DescricaoLayout.setVerticalGroup(
             MainFrame_Pane_Novo_DescricaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MainFrame_Pane_Novo_DescricaoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(MainFrame_Pane_Novo_lbl_Descricao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MainFrame_Pane_Novo_Pane_Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
@@ -331,6 +358,19 @@ public class MainFrame extends javax.swing.JFrame {
     private void MainFrame_Pane_Novo_DataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainFrame_Pane_Novo_DataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MainFrame_Pane_Novo_DataActionPerformed
+
+    private void jMenuItem1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMenuItem1KeyPressed
+        // TODO add your handling code here:
+        CriarUser criaruser = new CriarUser();
+        criaruser.setLocationRelativeTo(null);
+        criaruser.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1KeyPressed
+
+    private void MainFrame_Pane_Novo_ConfirmarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MainFrame_Pane_Novo_ConfirmarKeyPressed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_MainFrame_Pane_Novo_ConfirmarKeyPressed
     
     
     
@@ -390,6 +430,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel MainFrame_Pane_Novo_lbl_Descricao;
     private javax.swing.JLabel MainFrame_Pane_Novo_lbl_Hora;
     private javax.swing.JLabel MainFrame_Pane_Novo_lbl_Prioridade;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

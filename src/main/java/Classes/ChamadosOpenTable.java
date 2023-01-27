@@ -1,4 +1,4 @@
-package com.mycompany.ticketsystem;
+package Classes;
 
 import java.sql.*;
 import java.util.List;
@@ -14,7 +14,7 @@ public class ChamadosOpenTable extends AbstractTableModel {
     private int user_id;
     private int numLinhas;
     private Object[][] data;
-    private String[] columnNames = {"Código", "Assunto", "Categoria", "Descrição", "Data", "Hora"};
+    private String[] columnNames = {"Código", "Assunto", "Prioridade", "Descrição", "Data", "Hora"};
 
     public ChamadosOpenTable() {
         this.user_id = userinfo.getUser_id();
@@ -78,13 +78,13 @@ public class ChamadosOpenTable extends AbstractTableModel {
             int prioridadeNum = (int) data[rowIndex][columnIndex];
             switch(prioridadeNum){
                 case 1:
-                    return "Dá pra sobreviver até";
-                case 2:
                     return "Até rola usar assim, mas tem que arrumar";
-                case 3:
+                case 2:
                     return "Precisa resolver pra agora esse troço";
-                case 4:
+                case 3:
                     return "Não dá pra viver, arruma isso aqui plmds";
+                case 4:
+                    return "TÁ PEGANDO FOGO, BICHO";
                 default:
                     return "Inválido";
             }
